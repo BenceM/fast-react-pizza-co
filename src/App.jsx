@@ -6,19 +6,20 @@ import {
 	RouterProvider,
 } from "react-router-dom";
 import Home from "./ui/Home";
-import Menu from "./features/menu/Menu";
+import Menu, { loader as menuLoader } from "./features/menu/Menu";
 import Cart from "./features/cart/Cart";
 import Order from "./features/order/Order";
 import CreateOrder from "./features/order/CreateOrder";
+import AppLayout from "./ui/AppLayout";
 const router = createBrowserRouter(
 	createRoutesFromElements(
-		<>
+		<Route element={<AppLayout />}>
 			<Route path="/" element={<Home />} />
-			<Route path="/menu" element={<Menu />} />
+			<Route path="/menu" element={<Menu />} loader={menuLoader} />
 			<Route path="/cart" element={<Cart />} />
 			<Route path="/order/:id" element={<Order />} />
 			<Route path="/order/new" element={<CreateOrder />} />
-		</>,
+		</Route>,
 	),
 );
 
